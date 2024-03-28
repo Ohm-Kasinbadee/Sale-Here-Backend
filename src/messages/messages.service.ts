@@ -10,10 +10,15 @@ export class MessagesService {
     return this.messages[roomName] || [];
   }
 
-  async sendMessage(roomName: string, messageBody: string): Promise<Message> {
+  async sendMessage(
+    roomName: string,
+    messageBody: string,
+    image?: string,
+  ): Promise<Message> {
     const newMessage: Message = {
       id: uuidv4(),
       body: messageBody,
+      image: image || null,
       from: {
         name: 'Sender Name',
       },

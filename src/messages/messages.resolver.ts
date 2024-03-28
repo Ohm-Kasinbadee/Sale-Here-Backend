@@ -20,8 +20,13 @@ export class MessagesResolver {
   async sendMessage(
     @Args('roomName') roomName: string,
     @Args('message') message: string,
+    @Args('image') image?: string,
   ): Promise<VoidResponse> {
-    const newMessage = await this.messageService.sendMessage(roomName, message);
+    const newMessage = await this.messageService.sendMessage(
+      roomName,
+      message,
+      image,
+    );
     pubsub.publish('newMessage', { newMessage });
     return { successful: true };
   }

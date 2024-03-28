@@ -23,7 +23,7 @@ type Query {
 }
 
 type Mutation {
-  sendMessage(roomName: String!, message: String!): VoidResponse!
+  sendMessage(roomName: String!, message: String!, image: String!): VoidResponse!
   createRoom(roomName: String!): VoidResponse!
 }
 

@@ -12,6 +12,6 @@ export class Message {
   @Field({ nullable: true })
   image?: string;
 
-  @Field()
+  @Field(() => Sender)
   from: Sender;
 }
