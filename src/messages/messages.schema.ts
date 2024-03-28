@@ -1,20 +1,16 @@
-import { SchemaFactory } from '@nestjs/mongoose';
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Sender } from 'src/sender/sender.schema';
 
-@ObjectType()
+@Schema()
 export class Message {
-  @Field(() => ID)
-  id: string;
-
-  @Field()
+  @Prop({ required: true })
   body: string;
 
-  @Field({ nullable: true })
+  @Prop()
   image?: string;
 
-  @Field()
+  @Prop({ required: true })
   from: Sender;
 }
 

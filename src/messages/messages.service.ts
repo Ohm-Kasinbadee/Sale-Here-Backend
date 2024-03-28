@@ -1,27 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Message, MessageDocument } from './messages.schema';
+import { v4 as uuidv4 } from 'uuid';
+import { Message } from './message.model';
 
 @Injectable()
 export class MessagesService {
-  constructor(
-    @InjectModel(Message.name) private messageModel: Model<MessageDocument>,
-  ) {}
+  private messages: Record<string, Message[]> = {};
 
-  async findAll(roomName: string): Promise<Message[]> {
-    return this.messageModel.find({ roomName }).exec();
+  async getMessages(roomName: string): Promise<Message[]> {
+    return this.messages[roomName] || [];
   }
 
-  async create(roomName: string, body: string): Promise<Message> {
-    const from = 'a';
-    const image = 'aaa';
-    const createdMessage = new this.messageModel({
-      roomName,
-      body,
-      from,
-      image,
-    });
-    return createdMessage.save();
+  async sendMessage(roomName: string, messageBody: string): Promise<Message> {
+    const newMessage: Message = {
+      id: uuidv4(),
+      body: messageBody,
+      from: {
+        name: 'Sender Name',
+      },
+    };
+    this.messages[roomName] = [...(this.messages[roomName] || []), newMessage];
+    return newMessage;
   }
 }

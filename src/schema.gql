@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type VoidResponse {
+  successful: Boolean!
+}
+
 type Sender {
   name: String!
 }
@@ -13,10 +17,6 @@ type Message {
   from: Sender!
 }
 
-type VoidResponse {
-  successful: Boolean!
-}
-
 type Query {
   getHello: String!
   messages(roomName: String!): [Message!]!
@@ -24,9 +24,9 @@ type Query {
 
 type Mutation {
   sendMessage(roomName: String!, message: String!): VoidResponse!
-  createRoom(roomName: CreateRoomsInput!): VoidResponse!
+  createRoom(roomName: String!): VoidResponse!
 }
 
-input CreateRoomsInput {
-  name: String!
+type Subscription {
+  newMessage: Message!
 }

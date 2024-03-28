@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-// import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { AppResolver } from './app.resolver';
@@ -25,9 +24,6 @@ console.log(process.env.DB_NAME);
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      // cors: true,
-      // introspection: true,
-      // cache: 'bounded',
     }),
     MessagesModule,
     RoomsModule,

@@ -1,0 +1,7 @@
+type VoidResponse {
+  successful: Boolean
+}
+
+type Mutation {
+  createRoom(roomName: String!): VoidResponse
+}
