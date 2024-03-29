@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Sender } from 'src/sender/sender.model';
+import { Sender } from './sender.model';
 
 @ObjectType()
 export class Message {

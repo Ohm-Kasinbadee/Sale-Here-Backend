@@ -3,7 +3,7 @@ import { VoidResponse } from './dto/void-response.dto';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { Message } from './message.model';
-import { pubsub } from 'src/pubsub';
+import { pubsub } from './pubsub';
 
 @Resolver(() => Message)
 export class MessagesResolver {
